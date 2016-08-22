@@ -3,10 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApplication1"
+
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000">
+        Title="MainWindow" Height="700" Width="1000" Name="wnd"> 
+
     <Grid Name="pnlMainGrid" MouseUp="pnlMainGrid_MouseUp" Background="#645448"  MouseDown="pnlMainGrid_MouseDown" MouseMove="pnlMainGrid_MouseMove">
+        <StackPanel Margin="446,188,-426,-168">
+            <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat=Window width: {0:#,#.0}}" />
+            <TextBlock Text="{Binding ElementName=wnd, Path=ActualHeight, StringFormat=Window height: {0:C}}" />
+            <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Date: {0:dddd, MMMM dd}}" />
+            <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Time: {0:HH:mm}}" />
+        </StackPanel>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="66,36,0,0" VerticalAlignment="Top" Width="75" MouseUp="button_MouseUp" />
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="220,49,-92,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="101" Width="864" FontSize="60" FontStyle="Oblique">
 
@@ -37,6 +46,7 @@
             <Button x:Name="btnAddUser" Click="btnAddUser_Click" Content="Add user"/>
         </StackPanel>
         <ListBox Name="lbUsers" DisplayMemberPath="Name" Margin="80,155,748,124"></ListBox>
+    
     </Grid>
 
 </Window>

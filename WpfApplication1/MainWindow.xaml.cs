@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
+
 namespace WpfApplication1
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -12,7 +16,14 @@ namespace WpfApplication1
     {
         private ObservableCollection<User> users = new ObservableCollection<User>();
 
-     
+        public MainWindow()
+        {
+            InitializeComponent();
+            users.Add(new User() { Name = "John Doe" });
+            users.Add(new User() { Name = "Jane Doe" });
+
+            lbUsers.ItemsSource = users;
+        }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
@@ -30,19 +41,8 @@ namespace WpfApplication1
             if (lbUsers.SelectedItem != null)
                 users.Remove(lbUsers.SelectedItem as User);
         }
-        public MainWindow()
-        {
-            InitializeComponent();
-            pnlMainGrid.MouseRightButtonUp += PnlMainGrid_MouseRightButtonUp;
-
-            this.DataContext = this;
-
-            users.Add(new User() { Name = "John Doe" });
-            users.Add(new User() { Name = "Jane Doe" });
-
-            lbUsers.ItemsSource = users;
-        }
-
+       
+       
         private void PnlMainGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             label.Content = "MouseRightButtonUp" + e.GetPosition(this).ToString();
@@ -90,7 +90,7 @@ namespace WpfApplication1
                 if (this.name != value)
                 {
                     this.name = value;
-                    this.NotifyPropertyChanged("Name");
+                    NotifyPropertyChanged("Name");
                 }
             }
         }
@@ -103,4 +103,6 @@ namespace WpfApplication1
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
+
+   
 }
