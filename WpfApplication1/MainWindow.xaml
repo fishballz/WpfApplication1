@@ -10,11 +10,14 @@
         Title="MainWindow" Height="700" Width="1000" Name="wnd"> 
 
     <Grid Name="pnlMainGrid" MouseUp="pnlMainGrid_MouseUp" Background="#645448"  MouseDown="pnlMainGrid_MouseDown" MouseMove="pnlMainGrid_MouseMove">
-        <StackPanel Margin="446,188,-426,-168">
+        <StackPanel Margin="446,188,163,325">
             <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat=Window width: {0:#,#.0}}" />
             <TextBlock Text="{Binding ElementName=wnd, Path=ActualHeight, StringFormat=Window height: {0:C}}" />
             <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Date: {0:dddd, MMMM dd}}" />
             <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Time: {0:HH:mm}}" />
+            <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, ConverterCulture='de-DE', StringFormat=German date: {0:D}}" />
+            <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, ConverterCulture='en-US', StringFormat=American date: {0:D}}" />
+            <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, ConverterCulture='ja-JP', StringFormat=Japanese date: {0:D}}" />
         </StackPanel>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="66,36,0,0" VerticalAlignment="Top" Width="75" MouseUp="button_MouseUp" />
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="220,49,-92,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="101" Width="864" FontSize="60" FontStyle="Oblique">
