@@ -23,6 +23,13 @@ namespace WpfApplication1
             users.Add(new User() { Name = "Jane Doe" });
 
             lbUsers.ItemsSource = users;
+            List<User2> items = new List<User2>();
+                        items.Add(new User2() { Name = "John Doe", Age = 42, Mail = "john@doe-family.com" });
+                        items.Add(new User2() { Name = "Jane Doe", Age = 39, Mail = "jane@doe-family.com" });
+                        items.Add(new User2() { Name = "Sammy Doe", Age = 13, Mail = "sammy.doe@gmail.com" });
+                        lvDataBinding.ItemsSource = items;
+                        lvDataBinding2.ItemsSource = items;
+            lvUsers.ItemsSource = items;
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -78,7 +85,18 @@ namespace WpfApplication1
         }
 
     }
-    
+
+    public class User2
+    {
+        public int Age { get; internal set; }
+        public string Mail { get;  set; }
+        public string Name { get;  set; }
+        public override string ToString()
+        {
+            return this.Name + ", " + this.Age + " years old, email is " +  this.Mail;
+        }
+    }
+
     public class User : INotifyPropertyChanged
     {
         private string name;

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         xmlns:local="clr-namespace:WpfApplication1"
 
         mc:Ignorable="d"
@@ -18,6 +19,7 @@
             <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, ConverterCulture='de-DE', StringFormat=German date: {0:D}}" />
             <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, ConverterCulture='en-US', StringFormat=American date: {0:D}}" />
             <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, ConverterCulture='ja-JP', StringFormat=Japanese date: {0:D}}" />
+            <TextBlock Text="{Binding Title, diag:PresentationTraceSources.TraceLevel=High}" />
         </StackPanel>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="66,36,0,0" VerticalAlignment="Top" Width="75" MouseUp="button_MouseUp" />
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="220,49,-92,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="101" Width="864" FontSize="60" FontStyle="Oblique">
@@ -48,8 +50,33 @@
             <Button x:Name="btnDeleteUser" Click="btnDeleteUser_Click" Content="Delete user"/>
             <Button x:Name="btnAddUser" Click="btnAddUser_Click" Content="Add user"/>
         </StackPanel>
-        <ListBox Name="lbUsers" DisplayMemberPath="Name" Margin="80,155,748,124"></ListBox>
-    
+        <ListBox Name="lbUsers" DisplayMemberPath="Name" Margin="20,160,808,119"></ListBox>
+        <ListView Margin="189,323,608,22" Name="lvDataBinding"></ListView>
+        <ListView Margin="411,318,390,22" Name="lvDataBinding2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Age: " />
+                        <TextBlock Text="{Binding Age}" FontWeight="Bold" />
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding Mail}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                        <TextBlock Text=")" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Margin="622,318,101,36" Name="lvUsers">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding Age}" />
+                    <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 
 </Window>
