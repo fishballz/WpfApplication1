@@ -9,8 +9,10 @@
 
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1000" Name="wnd"> 
-
+<TabControl>
+            <TabItem Header="eins" >
     <Grid Name="pnlMainGrid" MouseUp="pnlMainGrid_MouseUp" Background="#645448"  MouseDown="pnlMainGrid_MouseDown" MouseMove="pnlMainGrid_MouseMove">
+        
         <StackPanel Margin="446,188,163,325">
             <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat=Window width: {0:#,#.0}}" />
             <TextBlock Text="{Binding ElementName=wnd, Path=ActualHeight, StringFormat=Window height: {0:C}}" />
@@ -77,6 +79,61 @@
                 </GridView>
             </ListView.View>
         </ListView>
+          
     </Grid>
+  </TabItem>
+            <TabItem Header="zwei">
+        <DockPanel Margin="10">
+            <WrapPanel Margin="0,10,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+                <Button Name="btnSelectNext" Click="btnSelectNext_Click" Width="120">Select next</Button>
+                <Button Name="btnToggleExpansion" Click="btnToggleExpansion_Click" Width="120" Margin="10,0,0,0">Toggle expansion</Button>
+            </WrapPanel>
 
+            <TreeView Name="trvPersons">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/WpfTutorialSamples;component/Images/user.png" Margin="0,0,5,0" />
+                            <TextBlock Text="{Binding Name}" Margin="0,0,4,0" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+        </DockPanel>
+        </TabItem>
+        <TabItem Header="drei" >
+        <DockPanel Margin="10">
+            <TreeView Name="trvStructure" TreeViewItem.Expanded="TreeViewItem_Expanded" Margin="10" />
+        </DockPanel>
+        </TabItem>
+        <TabItem Header="vier">
+            <Grid Margin="10">
+                <DataGrid Name="dgSimple"></DataGrid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="funf">
+            <DockPanel Margin="10"></DockPanel>
+        </TabItem>
+        <TabItem Header="sechs">
+            <DockPanel Margin="10"></DockPanel>
+        </TabItem>
+        <TabItem Header="sieben">
+            <DockPanel Margin="10"></DockPanel>
+        </TabItem>
+        <TabItem Header="acht">
+            <DockPanel Margin="10"></DockPanel>
+        </TabItem>
+        <TabItem Header="neun">
+            <DockPanel Margin="10"></DockPanel>
+        </TabItem>
+        <TabItem Header="zehn">
+            <DockPanel Margin="10"></DockPanel>
+        </TabItem>
+    </TabControl>
 </Window>
