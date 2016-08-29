@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.IO;
+using System.Linq;
 using System.Windows.Controls;
 namespace WpfApplication1
 {
